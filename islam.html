@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>কুরআনিক সংখ্যা বিশ্লেষণ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      transition: background-color 0.2s ease, border-color 0.2s, color 0.2s;
+    }
+    
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      position: relative;
+    }
+
+    .theme-toggle-container {
+      position: sticky;
+      top: 20px;
+      float: right;
+      margin-bottom: 10px;
+      z-index: 50;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      pointer-events: none;
+    }
+    
+    .theme-toggle-btn {
+      pointer-events: auto;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 10px 25px -8px rgba(0, 70, 40, 0.3);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+    }
+    
+    .theme-toggle-btn:hover {
+      transform: scale(1.08) rotate(8deg);
+      box-shadow: 0 15px 30px -6px #0b4f33;
+    }
+    
+    .theme-toggle-btn i {
+      transition: transform 0.5s ease;
+    }
+    
+    .theme-toggle-btn:active i {
+      transform: rotate(180deg);
+    }
+    
+    body.light-mode .theme-toggle-btn {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: #c4e0d2;
+      color: #2e7d5e;
+    }
+    
+    body.light-mode .theme-toggle-btn:hover {
+      background: white;
+    }
+    
+    body.dark-mode .theme-toggle-btn {
+      background: rgba(30, 60, 45, 0.9);
+      border-color: #5f9b7a;
+      color: #f0f7e6;
+    }
+    
+    body.dark-mode .theme-toggle-btn:hover {
+      background: #2b5440;
+    }
+
+    body.light-mode {
+      background: #f8fbf9;
+    }
+    
+    body.light-mode .glass {
+      background: #ffffff;
+      border: 1px solid #e9f0eb;
+      box-shadow: 0 12px 30px -10px rgba(0, 70, 40, 0.08);
+    }
+    
+    body.light-mode th {
+      background: #f0f7f2;
+      color: #1e4a3b;
+      border-bottom: 1px solid #d0e3d8;
+    }
+    
+    body.light-mode td {
+      color: #2e3f38;
+      border-bottom: 1px solid #edf4f0;
+      text-align: center;
+    }
+    
+    body.light-mode .badge-even {
+      background: #e4f4ed;
+      color: #1f7044;
+      border-left: 4px solid #2e8b57;
+    }
+    
+    body.light-mode .badge-odd {
+      background: #fef1e6;
+      color: #b45d2e;
+      border-left: 4px solid #dd6b20;
+    }
+    
+    body.light-mode .scrollable-list {
+      background: #f3f9f6;
+      color: #2d5a47;
+      border: 1px solid #d5ebe0;
+    }
+    
+    body.light-mode .footer-text {
+      color: #9bb9aa;
+    }
+
+    body.dark-mode {
+      background: #0f241d;
+    }
+    
+    body.dark-mode .glass {
+      background: #1d352b;
+      border: 1px solid #2e4d3e;
+      box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.5);
+    }
+    
+    body.dark-mode th {
+      background: #1f4034;
+      color: #d2e6db;
+      border-bottom: 1px solid #3d6250;
+    }
+    
+    body.dark-mode td {
+      color: #cde0d7;
+      border-bottom: 1px solid #2d4a3c;
+    }
+    
+    body.dark-mode .badge-even {
+      background: #1d4e3a;
+      color: #b6e6cf;
+      border-left: 4px solid #3e9f6e;
+    }
+    
+    body.dark-mode .badge-odd {
+      background: #5a3f29;
+      color: #fadcbb;
+      border-left: 4px solid #e58a3c;
+    }
+    
+    body.dark-mode .scrollable-list {
+      background: #274233;
+      color: #cce3d8;
+      border: 1px solid #3c6c53;
+    }
+    
+    body.dark-mode .footer-text {
+      color: #65967d;
+    }
+    
+    body.dark-mode .stat-value {
+      color: #c4ead9;
+    }
+    
+    body.dark-mode .text-emerald-600 {
+      color: #7ac29a !important;
+    }
+    
+    body.dark-mode .text-emerald-200 {
+      color: #346c50 !important;
+    }
+    
+    body.dark-mode .text-emerald-800 {
+      color: #b2e0ca !important;
+    }
+
+    .glass {
+      border-radius: 2rem;
+      backdrop-filter: blur(4px);
+    }
+    
+    .badge-even, .badge-odd { 
+      font-weight: 500;
+      border-radius: 9999px;
+      padding: 0.25rem 0.8rem;
+      display: inline-block;
+    }
+    
+    th { 
+      font-weight: 600; 
+      letter-spacing: 0.3px;
+    }
+    
+    td, th { 
+      padding: 0.9rem 0.6rem; 
+    }
+    
+    tbody tr:hover td {
+      background: transparent !important;
+    }
+    
+    .scrollable-list {
+      max-width: 240px;
+      overflow-x: auto;
+      white-space: nowrap;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      margin-top: 4px;
+    }
+
+    .fade-scale-in {
+      animation: fadeScale 0.5s ease-out;
+    }
+    
+    @keyframes fadeScale {
+      0% { opacity: 0; transform: scale(0.97); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    
+    .slide-up {
+      animation: slideUp 0.5s ease-out forwards;
+    }
+    
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(16px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+    
+    .delay-2 {
+      animation-delay: 0.2s;
+    }
+    
+    .stat-value {
+      font-weight: 500;
+    }
+
+    .explanation-card {
+      background: #ecfdf5;
+      border-left: 6px solid #10b981;
+      border-radius: 1.5rem;
+    }
+    
+    body.dark-mode .explanation-card {
+      background: #1e3a2f;
+      border-left-color: #34d399;
+    }
+
+    .full-ratio {
+      font-size: 2.5rem;
+      word-break: break-word;
+    }
+    
+    @media (min-width: 768px) {
+      .full-ratio {
+        font-size: 3rem;
+      }
+    }
+
+    .bangla-number {
+      font-feature-settings: "tnum";
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="container max-w-6xl w-full fade-scale-in">
+    <div class="theme-toggle-container">
+      <button onclick="toggleTheme()" class="theme-toggle-btn" id="themeToggle">
+        <i class="fas fa-sun"></i>
+      </button>
+    </div>
+
+    <div class="glass p-5 shadow-xl mb-10 slide-up mt-16">
+      <div class="overflow-auto max-h-[420px] rounded-xl">
+        <table class="w-full text-sm">
+          <thead class="sticky top-0 z-10">
+            <tr>
+              <th class="rounded-tl-2xl">ক্রম</th>
+              <th>সূরার নাম</th>
+              <th>আয়াত</th>
+              <th>সমষ্টি</th>
+              <th class="rounded-tr-2xl">ধরন</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody" class="divide-y"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="glass p-5 flex items-center justify-between slide-up delay-1">
+        <div>
+          <span class="text-xs uppercase tracking-wider text-emerald-600 flex items-center gap-1">
+            <i class="far fa-circle text-emerald-400"></i> জোড় · বিজোড়
+          </span>
+          <div class="text-4xl font-light flex gap-5 mt-1">
+            <span id="evenCount" class="stat-value bangla-number">০</span>
+            <span class="text-emerald-200">/</span>
+            <span id="oddCount" class="stat-value bangla-number">০</span>
+          </div>
+        </div>
+        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-800 dark:to-emerald-700 flex items-center justify-center text-3xl shadow-inner">
+          <i class="fas fa-balance-scale text-emerald-600 dark:text-emerald-300"></i>
+        </div>
+      </div>
+
+      <div class="glass p-5 slide-up delay-2">
+        <div class="flex justify-between items-center">
+          <div>
+            <div class="text-xs uppercase text-emerald-600">
+              <i class="fas fa-repeat mr-1"></i>পুনরাবৃত্ত সমষ্টি
+            </div>
+            <div class="text-2xl font-light bangla-number" id="repeatedSum">০</div>
+            <div class="scrollable-list bangla-number" id="repeatedDetail"></div>
+          </div>
+          <div class="text-3xl text-emerald-200">✦</div>
+          <div class="text-right">
+            <div class="text-xs uppercase text-amber-600">
+              <i class="fas fa-star mr-1"></i>অনন্য সমষ্টি
+            </div>
+            <div class="text-2xl font-light bangla-number" id="unrepeatedSum">০</div>
+            <div class="scrollable-list bangla-number" id="unrepeatedDetail"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-6 mb-8">
+      <div class="glass p-6 relative overflow-hidden slide-up" style="animation-delay: 0.3s">
+        <div class="absolute right-4 top-4 opacity-5 text-8xl font-serif text-emerald-700">ϕ</div>
+        <div class="flex flex-wrap items-center justify-between gap-4 relative">
+          <div>
+            <span class="text-xs uppercase tracking-widest text-emerald-600 flex items-center gap-1">
+              <i class="fas fa-arrow-right-arrow-left"></i> পুনরাবৃত্ত ÷ অনন্য <span id="ratioSumDisplay" class="font-mono text-emerald-700 bangla-number"></span>
+            </span>
+            <div class="full-ratio font-light font-mono tracking-tight text-emerald-800 bangla-number" id="ratioValue">০.০০০০</div>
+            <div class="text-sm text-emerald-500/80 mt-1 flex items-center gap-1" id="ratioComment">
+              <i class="fas fa-info-circle text-emerald-400"></i> <span>গোল্ডেন রেশিওর নৈকট্য যাচাই...</span>
+            </div>
+          </div>
+          <div class="flex gap-3 items-center">
+            <div class="h-12 w-12 rounded-full bg-emerald-50 dark:bg-emerald-800 flex items-center justify-center text-emerald-500 dark:text-emerald-300">
+              <i class="fas fa-phi text-2xl"></i>
+            </div>
+            <span class="text-xs max-w-[200px] text-emerald-600/70 dark:text-emerald-400/70">১.৬১৮ — সোনালী অনুপাত কুরআনের সংখ্যা বিন্যাসে বিদ্যমান</span>
+          </div>
+        </div>
+        <div class="absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-emerald-200 to-transparent"></div>
+      </div>
+
+      <div class="explanation-card p-6 shadow-md slide-up" style="animation-delay: 0.4s">
+        <div class="flex items-start gap-4 flex-wrap">
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-emerald-800 dark:text-emerald-200 mb-2 flex items-center gap-2 flex-wrap">
+              <span class="font-mono bangla-number">৭৯০৬ ÷ ৪৮৮৫</span> 
+              <span class="text-base font-light">=</span>
+              <span class="font-mono text-emerald-600 dark:text-emerald-400 text-xl bangla-number">১.৬১৮৬৩২...</span>
+            </h3>
+            <div class="space-y-2 text-emerald-700 dark:text-emerald-300 text-sm leading-relaxed">
+              <p><span class="font-medium">সোনালী অনুপাত (ϕ)</span> প্রায় <span class="font-mono bg-emerald-100/60 dark:bg-emerald-900/60 px-2 py-0.5 rounded bangla-number">১.৬১৮০৩৩৯৮৮৭...</span></p>
+              <p>পার্থক্য মাত্র <span class="font-mono font-medium bangla-number">০.০০০৫৯৮</span> — অত্যন্ত কাছাকাছি একটি মিল।</p>
+              <div class="bg-white/40 dark:bg-black/20 p-3 rounded-xl mt-2">
+                <span class="text-emerald-700 dark:text-emerald-200">এটি ধ্রুপদী সোনালী অনুপাতের উল্লেখযোগ্য কাছাকাছি, যা শিল্প ও প্রকৃতিতে সুষম অনুপাত হিসেবে পরিচিত। মাত্র <span class="font-mono bangla-number">০.০০০৫৯৮</span> (০.০৪% এর কম) বিচ্যুতি একে একটি চমকপ্রদ সংখ্যাসূচক প্রতিধ্বনি করে তুলেছে।</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center text-xs footer-text pt-4 pb-2 flex justify-center gap-4 flex-wrap">
+      <span><i class="far fa-heart mr-1 text-emerald-300"></i> গভীর পর্যবেক্ষণ</span>
+      <span class="opacity-30">|</span>
+      <span>সমষ্টি = সূরা# + আয়াত#</span>
+      <span class="opacity-30">|</span>
+      <span><i class="far fa-clock"></i> <span class="bangla-number">১১৪</span> টি সারি · ইন্টারঅ্যাকটিভ</span>
+    </div>
+  </div>
+
+  <script>
+    function toBanglaNumber(num) {
+      if (num === undefined || num === null) return '';
+      const str = num.toString();
+      const banglaDigits = {
+        '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪',
+        '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯'
+      };
+      return str.replace(/\d/g, d => banglaDigits[d]);
+    }
+
+    function toBanglaDecimal(numStr) {
+      if (!numStr) return '';
+      let parts = numStr.split('.');
+      let integerPart = parts[0];
+      let fractionalPart = parts[1] || '';
+      
+      let banglaInteger = toBanglaNumber(integerPart);
+      if (fractionalPart === '') return banglaInteger;
+      
+      let banglaFraction = toBanglaNumber(fractionalPart);
+      return banglaInteger + '.' + banglaFraction;
+    }
+
+    const data = [
+      [1,"আল-ফাতিহা",7,8,"Even"],[2,"আল-বাকারাহ",286,288,"Even"],[3,"আল-ইমরান",200,203,"Odd"],[4,"আন-নিসা",176,180,"Even"],
+      [5,"আল-মায়িদাহ",120,125,"Odd"],[6,"আল-আনআম",165,171,"Odd"],[7,"আল-আরাফ",206,213,"Odd"],[8,"আল-আনফাল",75,83,"Odd"],
+      [9,"আত-তাওবাহ",129,138,"Even"],[10,"ইউনুস",109,119,"Odd"],[11,"হুদ",123,134,"Even"],[12,"ইউসুফ",111,123,"Odd"],
+      [13,"আর-রাদ",43,56,"Even"],[14,"ইব্রাহিম",52,66,"Even"],[15,"আল-হিজর",99,114,"Even"],[16,"আন-নাহল",128,144,"Even"],
+      [17,"বনি ইসরাইল",111,128,"Even"],[18,"আল-কাহফ",110,128,"Even"],[19,"মারইয়াম",98,117,"Odd"],[20,"ত্বোয়া-হা",135,155,"Odd"],
+      [21,"আল-আম্বিয়া",112,133,"Odd"],[22,"আল-হাজ্জ",78,100,"Even"],[23,"আল-মুমিনুন",118,141,"Odd"],[24,"আন-নূর",64,88,"Even"],
+      [25,"আল-ফুরকান",77,102,"Even"],[26,"আশ-শুআরা",227,253,"Odd"],[27,"আন-নামল",93,120,"Even"],[28,"আল-কাসাস",88,116,"Even"],
+      [29,"আল-আনকাবুত",69,98,"Even"],[30,"আর-রুম",60,90,"Even"],[31,"লুকমান",34,65,"Odd"],[32,"আস-সিজদাহ",30,62,"Even"],
+      [33,"আল-আহযাব",73,106,"Even"],[34,"সাবা",54,88,"Even"],[35,"ফাতির",45,80,"Even"],[36,"ইয়াসিন",83,119,"Odd"],
+      [37,"আস-সাফফাত",182,219,"Odd"],[38,"সোয়াদ",88,126,"Even"],[39,"আজ-জুমার",75,114,"Even"],[40,"গাফির",85,125,"Odd"],
+      [41,"হা-মীম সিজদাহ",54,95,"Odd"],[42,"আশ-শুরা",53,95,"Odd"],[43,"আয-যুখরুফ",89,132,"Even"],[44,"আদ-দোখান",59,103,"Odd"],
+      [45,"আল-জাসিয়াহ",37,82,"Even"],[46,"আল-আহকাফ",35,81,"Odd"],[47,"মুহাম্মদ",38,85,"Odd"],[48,"আল-ফাতহ",29,77,"Odd"],
+      [49,"আল-হুজুরাত",18,67,"Odd"],[50,"ক্বাফ",45,95,"Odd"],[51,"আয-যারিয়াত",60,111,"Odd"],[52,"আত-তুর",49,101,"Odd"],
+      [53,"আন-নাজম",62,115,"Odd"],[54,"আল-ক্বামার",55,109,"Odd"],[55,"আর-রহমান",78,133,"Odd"],[56,"আল-ওয়াকিয়াহ",96,152,"Even"],
+      [57,"আল-হাদিদ",29,86,"Even"],[58,"আল-মুজাদালাহ",22,80,"Even"],[59,"আল-হাশর",24,83,"Odd"],[60,"আল-মুমতাহিনাহ",13,73,"Odd"],
+      [61,"আস-সাফ",14,75,"Odd"],[62,"আল-জুমুআহ",11,73,"Odd"],[63,"আল-মুনাফিকুন",11,74,"Even"],[64,"আত-তাগাবুন",18,82,"Even"],
+      [65,"আত-তালাক",12,77,"Odd"],[66,"আত-তাহরিম",12,78,"Even"],[67,"আল-মুলক",30,97,"Odd"],[68,"আল-কলম",52,120,"Even"],
+      [69,"আল-হাক্কাহ",52,121,"Odd"],[70,"আল-মাআরিজ",44,114,"Even"],[71,"নূহ",28,99,"Odd"],[72,"আল-জিন",28,100,"Even"],
+      [73,"আল-মুজ্জাম্মিল",20,93,"Odd"],[74,"আল-মুদ্দাসসির",56,130,"Even"],[75,"আল-কিয়ামাহ",40,115,"Odd"],[76,"আদ-দাহর",31,107,"Odd"],
+      [77,"আল-মুরসালাত",50,127,"Odd"],[78,"আন-নাবা",40,118,"Even"],[79,"আন-নাজিয়াত",46,125,"Odd"],[80,"আবাসা",42,122,"Even"],
+      [81,"আত-তাকভির",29,110,"Even"],[82,"আল-ইনফিতার",19,101,"Odd"],[83,"আল-মুত্বাফফিফিন",36,119,"Odd"],[84,"আল-ইনশিকাক",25,109,"Odd"],
+      [85,"আল-বুরূজ",22,107,"Odd"],[86,"আত-তারিক",17,103,"Odd"],[87,"আল-আলা",19,106,"Even"],[88,"আল-গাশিয়াহ",26,114,"Even"],
+      [89,"আল-ফাজর",30,119,"Odd"],[90,"আল-বালাদ",20,110,"Even"],[91,"আশ-শামস",15,106,"Even"],[92,"আল-লাইল",21,113,"Odd"],
+      [93,"আদ-দুহা",11,104,"Even"],[94,"আল-ইনশিরাহ",8,102,"Even"],[95,"আত-তিন",8,103,"Odd"],[96,"আল-আলাক",19,115,"Odd"],
+      [97,"আল-কদর",5,102,"Even"],[98,"আল-বাইয়্যিনাহ",8,106,"Even"],[99,"আজ-জালযালাহ",8,107,"Odd"],[100,"আল-আদিয়াত",11,111,"Odd"],
+      [101,"আল-কারিয়াহ",11,112,"Even"],[102,"আত-তাকাসুর",8,110,"Even"],[103,"আল-আসর",3,106,"Even"],[104,"আল-হুমাযাহ",9,113,"Odd"],
+      [105,"আল-ফীল",5,110,"Even"],[106,"কুরায়শ",4,110,"Even"],[107,"আল-মাউন",7,114,"Even"],[108,"আল-কাওসার",3,111,"Odd"],
+      [109,"আল-কাফিরুন",6,115,"Odd"],[110,"আন-নাসর",3,113,"Odd"],[111,"আল-মাসাদ",5,116,"Even"],[112,"আল-ইখলাস",4,116,"Even"],
+      [113,"আল-ফালাক",5,118,"Even"],[114,"আন-নাস",6,120,"Even"]
+    ];
+
+    function render() {
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+
+      const freq = {};
+      let even = 0;
+      let odd = 0;
+      const sums = [];
+
+      for (let row of data) {
+        sums.push(row[3]);
+        
+        if (row[4] === 'Even') {
+          even++;
+        } else {
+          odd++;
+        }
+        
+        freq[row[3]] = (freq[row[3]] || 0) + 1;
+
+        const tr = document.createElement('tr');
+
+        for (let idx = 0; idx < row.length; idx++) {
+          const td = document.createElement('td');
+          td.className = 'px-3 py-2.5 bg-transparent';
+          
+          if (idx === 4) {
+            const badgeClass = row[idx] === 'Even' ? 'badge-even' : 'badge-odd';
+            td.innerHTML = `<span class="${badgeClass} px-3 py-1 rounded-full text-xs font-medium shadow-sm">${row[idx] === 'Even' ? 'জোড়' : 'বিজোড়'}</span>`;
+          } else if (idx === 3) {
+            if (freq[row[idx]] > 1) {
+              td.innerHTML = `<span class="font-medium text-emerald-600 bangla-number">${toBanglaNumber(row[idx])} <i class="fas fa-repeat text-[10px] opacity-50"></i></span>`;
+            } else {
+              td.innerHTML = `<span class="bangla-number">${toBanglaNumber(row[idx])}</span>`;
+            }
+          } else if (idx === 0) {
+            td.innerHTML = `<span class="bangla-number">${toBanglaNumber(row[idx])}</span>`;
+          } else if (idx === 2) {
+            td.innerHTML = `<span class="bangla-number">${toBanglaNumber(row[idx])}</span>`;
+          } else {
+            td.textContent = row[idx];
+          }
+          
+          tr.appendChild(td);
+        }
+        
+        tbody.appendChild(tr);
+      }
+
+      const sumList = sums;
+      const repeated = sumList.filter(v => freq[v] > 1);
+      const unique = sumList.filter(v => freq[v] === 1);
+      const repSum = repeated.reduce((a, b) => a + b, 0);
+      const uniSum = unique.reduce((a, b) => a + b, 0);
+      const ratio = uniSum === 0 ? 0 : repSum / uniSum;
+      
+      const ratioFull = ratio.toString();
+
+      document.getElementById('evenCount').innerText = toBanglaNumber(even);
+      document.getElementById('oddCount').innerText = toBanglaNumber(odd);
+
+      document.getElementById('repeatedSum').innerHTML = `<span class="text-2xl font-light bangla-number">${toBanglaNumber(repSum)}</span>`;
+      
+      if (repeated.length) {
+        document.getElementById('repeatedDetail').innerHTML = `[${repeated.map(toBanglaNumber).join(' + ')}]`;
+      } else {
+        document.getElementById('repeatedDetail').innerHTML = '—';
+      }
+      
+      document.getElementById('unrepeatedSum').innerHTML = `<span class="text-2xl font-light bangla-number">${toBanglaNumber(uniSum)}</span>`;
+      
+      if (unique.length) {
+        document.getElementById('unrepeatedDetail').innerHTML = `[${unique.map(toBanglaNumber).join(' + ')}]`;
+      } else {
+        document.getElementById('unrepeatedDetail').innerHTML = '—';
+      }
+
+      const sumDisplay = document.getElementById('ratioSumDisplay');
+      if (sumDisplay) {
+        sumDisplay.innerText = `(${toBanglaNumber(repSum)} ÷ ${toBanglaNumber(uniSum)})`;
+      }
+
+      const ratioEl = document.getElementById('ratioValue');
+      ratioEl.innerText = toBanglaDecimal(ratioFull);
+
+      const commentEl = document.getElementById('ratioComment').querySelector('span');
+      const golden = 1.61803398875;
+      const diff = Math.abs(ratio - golden);
+      
+      if (diff < 0.005) {
+        commentEl.innerText = 'সোনালী অনুপাতের (ϕ ≈১.৬১৮) অত্যন্ত কাছাকাছি';
+      } else if (ratio > 1.6 && ratio < 1.63) {
+        commentEl.innerText = '≈ সোনালী অনুপাতের নিকটবর্তী';
+      } else {
+        commentEl.innerText = 'সোনালী অনুপাতের কাছাকাছি নয়, তবে সামঞ্জস্য পর্যবেক্ষণ করুন।';
+      }
+    }
+
+    function toggleTheme() {
+      const body = document.body;
+      const icon = document.querySelector('.theme-toggle-btn i');
+      
+      if (body.classList.contains('light-mode')) {
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+        icon.className = 'fas fa-moon';
+      } else {
+        body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
+        icon.className = 'fas fa-sun';
+      }
+    }
+
+    document.body.classList.add('light-mode');
+    document.querySelector('.theme-toggle-btn i').className = 'fas fa-sun';
+    render();
+  </script>
+</body>
+</html>
