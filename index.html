@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>কুরআনিক সংখ্যা বিশ্লেষণ</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
@@ -19,11 +19,18 @@
       justify-content: center;
       margin: 0;
       position: relative;
+      padding: 0.75rem 0.5rem;
+    }
+    
+    @media (min-width: 768px) {
+      body {
+        padding: 1.5rem 1rem;
+      }
     }
 
     .theme-toggle-container {
       position: sticky;
-      top: 20px;
+      top: 10px;
       float: right;
       margin-bottom: 10px;
       z-index: 50;
@@ -31,6 +38,12 @@
       justify-content: flex-end;
       width: 100%;
       pointer-events: none;
+    }
+    
+    @media (min-width: 768px) {
+      .theme-toggle-container {
+        top: 20px;
+      }
     }
     
     .theme-toggle-btn {
@@ -186,24 +199,63 @@
     }
 
     .glass {
-      border-radius: 2rem;
+      border-radius: 1.5rem;
       backdrop-filter: blur(4px);
+    }
+    
+    @media (min-width: 768px) {
+      .glass {
+        border-radius: 2rem;
+      }
     }
     
     .badge-even, .badge-odd { 
       font-weight: 500;
       border-radius: 9999px;
-      padding: 0.25rem 0.8rem;
+      padding: 0.25rem 0.6rem;
       display: inline-block;
+      font-size: 0.7rem;
+    }
+    
+    @media (min-width: 768px) {
+      .badge-even, .badge-odd {
+        padding: 0.25rem 0.8rem;
+        font-size: 0.75rem;
+      }
     }
     
     th { 
       font-weight: 600; 
       letter-spacing: 0.3px;
+      font-size: 0.7rem;
     }
     
-    td, th { 
-      padding: 0.9rem 0.6rem; 
+    @media (min-width: 768px) {
+      th {
+        font-size: 0.875rem;
+      }
+    }
+    
+    td { 
+      font-size: 0.7rem;
+      padding: 0.6rem 0.3rem;
+    }
+    
+    @media (min-width: 768px) {
+      td {
+        font-size: 0.875rem;
+        padding: 0.9rem 0.6rem;
+      }
+    }
+    
+    th { 
+      padding: 0.7rem 0.3rem; 
+    }
+    
+    @media (min-width: 768px) {
+      th {
+        padding: 0.9rem 0.6rem;
+      }
     }
     
     tbody tr:hover td {
@@ -211,13 +263,21 @@
     }
     
     .scrollable-list {
-      max-width: 240px;
+      max-width: 180px;
       overflow-x: auto;
       white-space: nowrap;
-      font-size: 0.7rem;
-      padding: 0.2rem 0.7rem;
+      font-size: 0.6rem;
+      padding: 0.2rem 0.5rem;
       border-radius: 30px;
       margin-top: 4px;
+    }
+    
+    @media (min-width: 768px) {
+      .scrollable-list {
+        max-width: 240px;
+        font-size: 0.7rem;
+        padding: 0.2rem 0.7rem;
+      }
     }
 
     .fade-scale-in {
@@ -252,8 +312,17 @@
 
     .explanation-card {
       background: #ecfdf5;
-      border-left: 6px solid #10b981;
-      border-radius: 1.5rem;
+      border-left: 4px solid #10b981;
+      border-radius: 1.2rem;
+      padding: 1rem;
+    }
+    
+    @media (min-width: 768px) {
+      .explanation-card {
+        border-left: 6px solid #10b981;
+        border-radius: 1.5rem;
+        padding: 1.5rem;
+      }
     }
     
     body.dark-mode .explanation-card {
@@ -262,8 +331,14 @@
     }
 
     .full-ratio {
-      font-size: 2.5rem;
+      font-size: 1.8rem;
       word-break: break-word;
+    }
+    
+    @media (min-width: 640px) {
+      .full-ratio {
+        font-size: 2.2rem;
+      }
     }
     
     @media (min-width: 768px) {
@@ -275,6 +350,68 @@
     .bangla-number {
       font-feature-settings: "tnum";
     }
+    
+    .container {
+      padding-left: 0.25rem;
+      padding-right: 0.25rem;
+    }
+    
+    @media (min-width: 640px) {
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+    
+    .mt-16 {
+      margin-top: 3rem;
+    }
+    
+    @media (min-width: 768px) {
+      .mt-16 {
+        margin-top: 4rem;
+      }
+    }
+    
+    .text-4xl {
+      font-size: 1.8rem;
+    }
+    
+    @media (min-width: 768px) {
+      .text-4xl {
+        font-size: 2.25rem;
+      }
+    }
+    
+    .gap-5 {
+      gap: 0.8rem;
+    }
+    
+    @media (min-width: 768px) {
+      .gap-5 {
+        gap: 1.25rem;
+      }
+    }
+    
+    .max-h-[420px] {
+      max-height: 350px;
+    }
+    
+    @media (min-width: 768px) {
+      .max-h-[420px] {
+        max-height: 420px;
+      }
+    }
+    
+    table {
+      min-width: 500px;
+    }
+    
+    @media (max-width: 640px) {
+      table {
+        min-width: 450px;
+      }
+    }
   </style>
 </head>
 <body class="light-mode">
@@ -285,9 +422,9 @@
       </button>
     </div>
 
-    <div class="glass p-5 shadow-xl mb-10 slide-up mt-16">
-      <div class="overflow-auto max-h-[420px] rounded-xl">
-        <table class="w-full text-sm">
+    <div class="glass p-3 md:p-5 shadow-xl mb-6 md:mb-10 slide-up mt-12 md:mt-16">
+      <div class="overflow-auto max-h-[350px] md:max-h-[420px] rounded-xl">
+        <table class="w-full text-xs md:text-sm">
           <thead class="sticky top-0 z-10">
             <tr>
               <th class="rounded-tl-2xl">ক্রম</th>
@@ -302,80 +439,80 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-      <div class="glass p-5 flex items-center justify-between slide-up delay-1">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
+      <div class="glass p-4 md:p-5 flex items-center justify-between slide-up delay-1">
         <div>
-          <span class="text-xs uppercase tracking-wider text-emerald-600 flex items-center gap-1">
-            <i class="far fa-circle text-emerald-400"></i> জোড় · বিজোড়
+          <span class="text-2xs md:text-xs uppercase tracking-wider text-emerald-600 flex items-center gap-1">
+            <i class="far fa-circle text-emerald-400 text-xs"></i> জোড় · বিজোড়
           </span>
-          <div class="text-4xl font-light flex gap-5 mt-1">
+          <div class="text-2xl md:text-4xl font-light flex gap-3 md:gap-5 mt-1">
             <span id="evenCount" class="stat-value bangla-number">০</span>
             <span class="text-emerald-200">/</span>
             <span id="oddCount" class="stat-value bangla-number">০</span>
           </div>
         </div>
-        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-800 dark:to-emerald-700 flex items-center justify-center text-3xl shadow-inner">
+        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-800 dark:to-emerald-700 flex items-center justify-center text-xl md:text-3xl shadow-inner">
           <i class="fas fa-balance-scale text-emerald-600 dark:text-emerald-300"></i>
         </div>
       </div>
 
-      <div class="glass p-5 slide-up delay-2">
+      <div class="glass p-4 md:p-5 slide-up delay-2">
         <div class="flex justify-between items-center">
           <div>
-            <div class="text-xs uppercase text-emerald-600">
+            <div class="text-2xs md:text-xs uppercase text-emerald-600">
               <i class="fas fa-repeat mr-1"></i>পুনরাবৃত্ত সমষ্টি
             </div>
-            <div class="text-2xl font-light bangla-number" id="repeatedSum">০</div>
+            <div class="text-lg md:text-2xl font-light bangla-number" id="repeatedSum">০</div>
             <div class="scrollable-list bangla-number" id="repeatedDetail"></div>
           </div>
-          <div class="text-3xl text-emerald-200">✦</div>
+          <div class="text-2xl md:text-3xl text-emerald-200">✦</div>
           <div class="text-right">
-            <div class="text-xs uppercase text-amber-600">
+            <div class="text-2xs md:text-xs uppercase text-amber-600">
               <i class="fas fa-star mr-1"></i>অনন্য সমষ্টি
             </div>
-            <div class="text-2xl font-light bangla-number" id="unrepeatedSum">০</div>
+            <div class="text-lg md:text-2xl font-light bangla-number" id="unrepeatedSum">০</div>
             <div class="scrollable-list bangla-number" id="unrepeatedDetail"></div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="space-y-6 mb-8">
-      <div class="glass p-6 relative overflow-hidden slide-up" style="animation-delay: 0.3s">
-        <div class="absolute right-4 top-4 opacity-5 text-8xl font-serif text-emerald-700">ϕ</div>
-        <div class="flex flex-wrap items-center justify-between gap-4 relative">
+    <div class="space-y-4 md:space-y-6 mb-6 md:mb-8">
+      <div class="glass p-4 md:p-6 relative overflow-hidden slide-up" style="animation-delay: 0.3s">
+        <div class="absolute right-2 md:right-4 top-2 md:top-4 opacity-5 text-6xl md:text-8xl font-serif text-emerald-700">ϕ</div>
+        <div class="flex flex-wrap items-center justify-between gap-3 md:gap-4 relative">
           <div>
-            <span class="text-xs uppercase tracking-widest text-emerald-600 flex items-center gap-1">
-              <i class="fas fa-arrow-right-arrow-left"></i> পুনরাবৃত্ত ÷ অনন্য <span id="ratioSumDisplay" class="font-mono text-emerald-700 bangla-number"></span>
+            <span class="text-2xs md:text-xs uppercase tracking-widest text-emerald-600 flex items-center gap-1">
+              <i class="fas fa-arrow-right-arrow-left"></i> পুনরাবৃত্ত ÷ অনন্য <span id="ratioSumDisplay" class="font-mono text-emerald-700 bangla-number text-xs"></span>
             </span>
             <div class="full-ratio font-light font-mono tracking-tight text-emerald-800 bangla-number" id="ratioValue">০.০০০০</div>
-            <div class="text-sm text-emerald-500/80 mt-1 flex items-center gap-1" id="ratioComment">
+            <div class="text-2xs md:text-sm text-emerald-500/80 mt-1 flex items-center gap-1" id="ratioComment">
               <i class="fas fa-info-circle text-emerald-400"></i> <span>গোল্ডেন রেশিওর নৈকট্য যাচাই...</span>
             </div>
           </div>
-          <div class="flex gap-3 items-center">
-            <div class="h-12 w-12 rounded-full bg-emerald-50 dark:bg-emerald-800 flex items-center justify-center text-emerald-500 dark:text-emerald-300">
-              <i class="fas fa-phi text-2xl"></i>
+          <div class="flex gap-2 md:gap-3 items-center mt-2 md:mt-0">
+            <div class="h-8 w-8 md:h-12 md:w-12 rounded-full bg-emerald-50 dark:bg-emerald-800 flex items-center justify-center text-emerald-500 dark:text-emerald-300">
+              <i class="fas fa-phi text-lg md:text-2xl"></i>
             </div>
-            <span class="text-xs max-w-[200px] text-emerald-600/70 dark:text-emerald-400/70">১.৬১৮ — সোনালী অনুপাত কুরআনের সংখ্যা বিন্যাসে বিদ্যমান</span>
+            <span class="text-2xs md:text-xs max-w-[140px] md:max-w-[200px] text-emerald-600/70 dark:text-emerald-400/70">১.৬১৮ — সোনালী অনুপাত কুরআনের সংখ্যা বিন্যাসে বিদ্যমান</span>
           </div>
         </div>
         <div class="absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-emerald-200 to-transparent"></div>
       </div>
 
-      <div class="explanation-card p-6 shadow-md slide-up" style="animation-delay: 0.4s">
-        <div class="flex items-start gap-4 flex-wrap">
+      <div class="explanation-card shadow-md slide-up" style="animation-delay: 0.4s">
+        <div class="flex items-start gap-2 md:gap-4 flex-wrap">
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-emerald-800 dark:text-emerald-200 mb-2 flex items-center gap-2 flex-wrap">
-              <span class="font-mono bangla-number">৭৯০৬ ÷ ৪৮৮৫</span> 
-              <span class="text-base font-light">=</span>
-              <span class="font-mono text-emerald-600 dark:text-emerald-400 text-xl bangla-number">১.৬১৮৬৩২...</span>
+            <h3 class="text-base md:text-lg font-semibold text-emerald-800 dark:text-emerald-200 mb-1 md:mb-2 flex items-center gap-1 md:gap-2 flex-wrap">
+              <span class="font-mono bangla-number text-sm md:text-base">৭৯০৬ ÷ ৪৮৮৫</span> 
+              <span class="text-xs md:text-base font-light">=</span>
+              <span class="font-mono text-emerald-600 dark:text-emerald-400 text-sm md:text-xl bangla-number">১.৬১৮৬৩২...</span>
             </h3>
-            <div class="space-y-2 text-emerald-700 dark:text-emerald-300 text-sm leading-relaxed">
-              <p><span class="font-medium">সোনালী অনুপাত (ϕ)</span> প্রায় <span class="font-mono bg-emerald-100/60 dark:bg-emerald-900/60 px-2 py-0.5 rounded bangla-number">১.৬১৮০৩৩৯৮৮৭...</span></p>
+            <div class="space-y-1 md:space-y-2 text-emerald-700 dark:text-emerald-300 text-2xs md:text-sm leading-relaxed">
+              <p><span class="font-medium">সোনালী অনুপাত (ϕ)</span> প্রায় <span class="font-mono bg-emerald-100/60 dark:bg-emerald-900/60 px-1 md:px-2 py-0.5 rounded bangla-number text-2xs md:text-xs">১.৬১৮০৩৩৯৮৮৭...</span></p>
               <p>পার্থক্য মাত্র <span class="font-mono font-medium bangla-number">০.০০০৫৯৮</span> — অত্যন্ত কাছাকাছি একটি মিল।</p>
-              <div class="bg-white/40 dark:bg-black/20 p-3 rounded-xl mt-2">
-                <span class="text-emerald-700 dark:text-emerald-200">এটি ধ্রুপদী সোনালী অনুপাতের উল্লেখযোগ্য কাছাকাছি, যা শিল্প ও প্রকৃতিতে সুষম অনুপাত হিসেবে পরিচিত। মাত্র <span class="font-mono bangla-number">০.০০০৫৯৮</span> (০.০৪% এর কম) বিচ্যুতি একে একটি চমকপ্রদ সংখ্যাসূচক প্রতিধ্বনি করে তুলেছে।</span>
+              <div class="bg-white/40 dark:bg-black/20 p-2 md:p-3 rounded-lg md:rounded-xl mt-1 md:mt-2">
+                <span class="text-emerald-700 dark:text-emerald-200 text-2xs md:text-sm">এটি ধ্রুপদী সোনালী অনুপাতের উল্লেখযোগ্য কাছাকাছি, যা শিল্প ও প্রকৃতিতে সুষম অনুপাত হিসেবে পরিচিত। মাত্র <span class="font-mono bangla-number">০.০০০৫৯৮</span> (০.০৪% এর কম) বিচ্যুতি একে একটি চমকপ্রদ সংখ্যাসূচক প্রতিধ্বনি করে তুলেছে।</span>
               </div>
             </div>
           </div>
@@ -383,12 +520,12 @@
       </div>
     </div>
 
-    <div class="text-center text-xs footer-text pt-4 pb-2 flex justify-center gap-4 flex-wrap">
+    <div class="text-center text-2xs md:text-xs footer-text pt-2 md:pt-4 pb-1 md:pb-2 flex justify-center gap-2 md:gap-4 flex-wrap">
       <span><i class="far fa-heart mr-1 text-emerald-300"></i> গভীর পর্যবেক্ষণ</span>
-      <span class="opacity-30">|</span>
+      <span class="opacity-30 hidden xs:inline">|</span>
       <span>সমষ্টি = সূরা# + আয়াত#</span>
-      <span class="opacity-30">|</span>
-      <span><i class="far fa-clock"></i> <span class="bangla-number">১১৪</span> টি সারি · ইন্টারঅ্যাকটিভ</span>
+      <span class="opacity-30 hidden xs:inline">|</span>
+      <span><i class="far fa-clock"></i> <span class="bangla-number">১১৪</span> টি সারি</span>
     </div>
   </div>
 
@@ -472,23 +609,24 @@
 
         for (let idx = 0; idx < row.length; idx++) {
           const td = document.createElement('td');
-          td.className = 'px-3 py-2.5 bg-transparent';
+          td.className = 'px-1 md:px-3 py-1.5 md:py-2.5 bg-transparent';
           
           if (idx === 4) {
             const badgeClass = row[idx] === 'Even' ? 'badge-even' : 'badge-odd';
-            td.innerHTML = `<span class="${badgeClass} px-3 py-1 rounded-full text-xs font-medium shadow-sm">${row[idx] === 'Even' ? 'জোড়' : 'বিজোড়'}</span>`;
+            td.innerHTML = `<span class="${badgeClass} px-2 md:px-3 py-0.5 md:py-1 rounded-full text-2xs md:text-xs font-medium shadow-sm">${row[idx] === 'Even' ? 'জোড়' : 'বিজোড়'}</span>`;
           } else if (idx === 3) {
             if (freq[row[idx]] > 1) {
-              td.innerHTML = `<span class="font-medium text-emerald-600 bangla-number">${toBanglaNumber(row[idx])} <i class="fas fa-repeat text-[10px] opacity-50"></i></span>`;
+              td.innerHTML = `<span class="font-medium text-emerald-600 bangla-number text-2xs md:text-sm">${toBanglaNumber(row[idx])} <i class="fas fa-repeat text-[8px] md:text-[10px] opacity-50"></i></span>`;
             } else {
-              td.innerHTML = `<span class="bangla-number">${toBanglaNumber(row[idx])}</span>`;
+              td.innerHTML = `<span class="bangla-number text-2xs md:text-sm">${toBanglaNumber(row[idx])}</span>`;
             }
           } else if (idx === 0) {
-            td.innerHTML = `<span class="bangla-number">${toBanglaNumber(row[idx])}</span>`;
+            td.innerHTML = `<span class="bangla-number text-2xs md:text-sm">${toBanglaNumber(row[idx])}</span>`;
           } else if (idx === 2) {
-            td.innerHTML = `<span class="bangla-number">${toBanglaNumber(row[idx])}</span>`;
+            td.innerHTML = `<span class="bangla-number text-2xs md:text-sm">${toBanglaNumber(row[idx])}</span>`;
           } else {
             td.textContent = row[idx];
+            td.className += ' text-2xs md:text-sm';
           }
           
           tr.appendChild(td);
@@ -509,7 +647,7 @@
       document.getElementById('evenCount').innerText = toBanglaNumber(even);
       document.getElementById('oddCount').innerText = toBanglaNumber(odd);
 
-      document.getElementById('repeatedSum').innerHTML = `<span class="text-2xl font-light bangla-number">${toBanglaNumber(repSum)}</span>`;
+      document.getElementById('repeatedSum').innerHTML = `<span class="text-lg md:text-2xl font-light bangla-number">${toBanglaNumber(repSum)}</span>`;
       
       if (repeated.length) {
         document.getElementById('repeatedDetail').innerHTML = `[${repeated.map(toBanglaNumber).join(' + ')}]`;
@@ -517,7 +655,7 @@
         document.getElementById('repeatedDetail').innerHTML = '—';
       }
       
-      document.getElementById('unrepeatedSum').innerHTML = `<span class="text-2xl font-light bangla-number">${toBanglaNumber(uniSum)}</span>`;
+      document.getElementById('unrepeatedSum').innerHTML = `<span class="text-lg md:text-2xl font-light bangla-number">${toBanglaNumber(uniSum)}</span>`;
       
       if (unique.length) {
         document.getElementById('unrepeatedDetail').innerHTML = `[${unique.map(toBanglaNumber).join(' + ')}]`;
