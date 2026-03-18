@@ -20,29 +20,12 @@
       margin: 0;
       position: relative;
       padding: 0.75rem 0.5rem;
+      background: #f8fbf9;
     }
     
     @media (min-width: 768px) {
       body {
         padding: 1.5rem 1rem;
-      }
-    }
-
-    .theme-toggle-container {
-      position: sticky;
-      top: 10px;
-      float: right;
-      margin-bottom: 10px;
-      z-index: 50;
-      display: flex;
-      justify-content: flex-end;
-      width: 100%;
-      pointer-events: none;
-    }
-    
-    @media (min-width: 768px) {
-      .theme-toggle-container {
-        top: 20px;
       }
     }
     
@@ -60,11 +43,15 @@
       transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1);
       border: 1px solid rgba(255, 255, 255, 0.4);
       cursor: pointer;
+      background: rgba(255, 255, 255, 0.9);
+      border-color: #c4e0d2;
+      color: #2e7d5e;
     }
     
     .theme-toggle-btn:hover {
       transform: scale(1.08) rotate(8deg);
       box-shadow: 0 15px 30px -6px #0b4f33;
+      background: white;
     }
     
     .theme-toggle-btn i {
@@ -74,123 +61,11 @@
     .theme-toggle-btn:active i {
       transform: rotate(180deg);
     }
-    
-    body.light-mode .theme-toggle-btn {
-      background: rgba(255, 255, 255, 0.9);
-      border-color: #c4e0d2;
-      color: #2e7d5e;
-    }
-    
-    body.light-mode .theme-toggle-btn:hover {
-      background: white;
-    }
-    
-    body.dark-mode .theme-toggle-btn {
-      background: rgba(30, 60, 45, 0.9);
-      border-color: #5f9b7a;
-      color: #f0f7e6;
-    }
-    
-    body.dark-mode .theme-toggle-btn:hover {
-      background: #2b5440;
-    }
 
-    body.light-mode {
-      background: #f8fbf9;
-    }
-    
-    body.light-mode .glass {
+    .glass {
       background: #ffffff;
       border: 1px solid #e9f0eb;
       box-shadow: 0 12px 30px -10px rgba(0, 70, 40, 0.08);
-    }
-    
-    body.light-mode th {
-      background: #f0f7f2;
-      color: #1e4a3b;
-      border-bottom: 1px solid #d0e3d8;
-    }
-    
-    body.light-mode td {
-      color: #2e3f38;
-      border-bottom: 1px solid #edf4f0;
-      text-align: center;
-    }
-    
-    body.light-mode .badge-even {
-      background: #e4f4ed;
-      color: #1f7044;
-      border-left: 4px solid #2e8b57;
-    }
-    
-    body.light-mode .badge-odd {
-      background: #fef1e6;
-      color: #b45d2e;
-      border-left: 4px solid #dd6b20;
-    }
-    
-    body.light-mode .scrollable-list {
-      background: #f3f9f6;
-      color: #2d5a47;
-      border: 1px solid #d5ebe0;
-    }
-
-    body.dark-mode {
-      background: #0f241d;
-    }
-    
-    body.dark-mode .glass {
-      background: #1d352b;
-      border: 1px solid #2e4d3e;
-      box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.5);
-    }
-    
-    body.dark-mode th {
-      background: #1f4034;
-      color: #d2e6db;
-      border-bottom: 1px solid #3d6250;
-    }
-    
-    body.dark-mode td {
-      color: #cde0d7;
-      border-bottom: 1px solid #2d4a3c;
-    }
-    
-    body.dark-mode .badge-even {
-      background: #1d4e3a;
-      color: #b6e6cf;
-      border-left: 4px solid #3e9f6e;
-    }
-    
-    body.dark-mode .badge-odd {
-      background: #5a3f29;
-      color: #fadcbb;
-      border-left: 4px solid #e58a3c;
-    }
-    
-    body.dark-mode .scrollable-list {
-      background: #274233;
-      color: #cce3d8;
-      border: 1px solid #3c6c53;
-    }
-    
-    body.dark-mode .stat-value {
-      color: #c4ead9;
-    }
-    
-    body.dark-mode .text-emerald-600 {
-      color: #7ac29a !important;
-    }
-    
-    body.dark-mode .text-emerald-200 {
-      color: #346c50 !important;
-    }
-    
-    body.dark-mode .text-emerald-800 {
-      color: #b2e0ca !important;
-    }
-
-    .glass {
       border-radius: 1.5rem;
       backdrop-filter: blur(4px);
     }
@@ -201,7 +76,53 @@
       }
     }
     
-    .badge-even, .badge-odd { 
+    th {
+      background: #f0f7f2;
+      color: #1e4a3b;
+      border-bottom: 1px solid #d0e3d8;
+      font-weight: 600; 
+      letter-spacing: 0.3px;
+      font-size: 0.7rem;
+      padding: 0.7rem 0.3rem;
+    }
+    
+    @media (min-width: 768px) {
+      th {
+        font-size: 0.875rem;
+        padding: 0.9rem 0.6rem;
+      }
+    }
+    
+    td {
+      color: #2e3f38;
+      border-bottom: 1px solid #edf4f0;
+      text-align: center;
+      font-size: 0.7rem;
+      padding: 0.6rem 0.3rem;
+    }
+    
+    @media (min-width: 768px) {
+      td {
+        font-size: 0.875rem;
+        padding: 0.9rem 0.6rem;
+      }
+    }
+    
+    .badge-even {
+      background: #e4f4ed;
+      color: #1f7044;
+      border-left: 4px solid #2e8b57;
+      font-weight: 500;
+      border-radius: 9999px;
+      padding: 0.25rem 0.6rem;
+      display: inline-block;
+      font-size: 0.7rem;
+    }
+    
+    .badge-odd {
+      background: #fef1e6;
+      color: #b45d2e;
+      border-left: 4px solid #dd6b20;
       font-weight: 500;
       border-radius: 9999px;
       padding: 0.25rem 0.6rem;
@@ -216,45 +137,10 @@
       }
     }
     
-    th { 
-      font-weight: 600; 
-      letter-spacing: 0.3px;
-      font-size: 0.7rem;
-    }
-    
-    @media (min-width: 768px) {
-      th {
-        font-size: 0.875rem;
-      }
-    }
-    
-    td { 
-      font-size: 0.7rem;
-      padding: 0.6rem 0.3rem;
-    }
-    
-    @media (min-width: 768px) {
-      td {
-        font-size: 0.875rem;
-        padding: 0.9rem 0.6rem;
-      }
-    }
-    
-    th { 
-      padding: 0.7rem 0.3rem; 
-    }
-    
-    @media (min-width: 768px) {
-      th {
-        padding: 0.9rem 0.6rem;
-      }
-    }
-    
-    tbody tr:hover td {
-      background: transparent !important;
-    }
-    
     .scrollable-list {
+      background: #f3f9f6;
+      color: #2d5a47;
+      border: 1px solid #d5ebe0;
       max-width: 180px;
       overflow-x: auto;
       white-space: nowrap;
@@ -270,6 +156,10 @@
         font-size: 0.7rem;
         padding: 0.2rem 0.7rem;
       }
+    }
+    
+    tbody tr:hover td {
+      background: transparent !important;
     }
 
     .fade-scale-in {
@@ -300,6 +190,7 @@
     
     .stat-value {
       font-weight: 500;
+      color: #1e4a3b;
     }
 
     .explanation-card {
@@ -316,15 +207,11 @@
         padding: 1.5rem;
       }
     }
-    
-    body.dark-mode .explanation-card {
-      background: #1e3a2f;
-      border-left-color: #34d399;
-    }
 
     .full-ratio {
       font-size: 1.8rem;
       word-break: break-word;
+      color: #065f46;
     }
     
     @media (min-width: 640px) {
@@ -385,33 +272,13 @@
       }
     }
     
-    .max-h-420 {
+    .table-container {
       max-height: 350px;
     }
     
     @media (min-width: 768px) {
-      .max-h-420 {
+      .table-container {
         max-height: 420px;
-      }
-    }
-    
-    .max-w-140 {
-      max-width: 140px;
-    }
-    
-    @media (min-width: 768px) {
-      .max-w-200 {
-        max-width: 200px;
-      }
-    }
-    
-    .text-8px {
-      font-size: 8px;
-    }
-    
-    @media (min-width: 768px) {
-      .text-10px {
-        font-size: 10px;
       }
     }
     
@@ -434,16 +301,7 @@
         font-size: 0.7rem;
       }
     }
-    
-    .hidden {
-      display: none;
-    }
-    
-    .inline {
-      display: inline;
-    }
 
-    /* ফিক্সড পজিশনিং ফর মোবাইল */
     .stats-container {
       display: flex;
       flex-direction: column;
@@ -463,10 +321,12 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
+      flex-wrap: nowrap;
     }
     
     .repeat-left, .repeat-right {
       flex: 1;
+      min-width: 0;
     }
     
     .repeat-left {
@@ -480,6 +340,8 @@
     .divider-star {
       margin: 0 0.5rem;
       font-size: 1.5rem;
+      color: #a7d4c0;
+      flex-shrink: 0;
     }
     
     @media (min-width: 768px) {
@@ -488,18 +350,67 @@
         font-size: 2rem;
       }
     }
+
+    .repeat-left .uppercase,
+    .repeat-right .uppercase {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .text-emerald-200 {
+      color: #a7d4c0;
+    }
+    
+    .text-amber-600 {
+      color: #b45d2e;
+    }
+    
+    .text-emerald-600 {
+      color: #047857;
+    }
+    
+    .text-emerald-400 {
+      color: #34d399;
+    }
+    
+    .bg-gradient-to-br {
+      background-image: linear-gradient(to bottom right, #ecfdf5, #d1fae5);
+    }
+    
+    .text-emerald-500\/80 {
+      color: rgba(16, 185, 129, 0.8);
+    }
+    
+    .text-emerald-700 {
+      color: #047857;
+    }
+    
+    .text-emerald-800 {
+      color: #065f46;
+    }
+    
+    .bg-emerald-100\/60 {
+      background-color: rgba(209, 250, 229, 0.6);
+    }
+    
+    .bg-white\/40 {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+    
+    .from-emerald-50 {
+      --tw-gradient-from: #ecfdf5;
+    }
+    
+    .to-emerald-100 {
+      --tw-gradient-to: #d1fae5;
+    }
   </style>
 </head>
-<body class="light-mode">
+<body>
   <div class="container max-w-6xl w-full fade-scale-in">
-    <div class="theme-toggle-container">
-      <button onclick="toggleTheme()" class="theme-toggle-btn" id="themeToggle" aria-label="থিম পরিবর্তন">
-        <i class="fas fa-sun"></i>
-      </button>
-    </div>
-
     <div class="glass p-3 md:p-5 shadow-xl mb-6 md:mb-10 slide-up mt-12 md:mt-16">
-      <div class="overflow-auto max-h-420 rounded-xl">
+      <div class="overflow-auto table-container rounded-xl">
         <table class="w-full text-xs md:text-sm">
           <thead class="sticky top-0 z-10">
             <tr>
@@ -527,8 +438,8 @@
             <span id="oddCount" class="stat-value bangla-number">০</span>
           </div>
         </div>
-        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-800 dark:to-emerald-700 flex items-center justify-center text-xl md:text-3xl shadow-inner">
-          <i class="fas fa-balance-scale text-emerald-600 dark:text-emerald-300"></i>
+        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center text-xl md:text-3xl shadow-inner">
+          <i class="fas fa-balance-scale text-emerald-600"></i>
         </div>
       </div>
 
@@ -542,7 +453,7 @@
             <div class="scrollable-list bangla-number" id="repeatedDetail"></div>
           </div>
           
-          <div class="divider-star text-emerald-200">✦</div>
+          <div class="divider-star">✦</div>
           
           <div class="repeat-right">
             <div class="text-2xs md:text-xs uppercase text-amber-600">
@@ -569,10 +480,10 @@
             </div>
           </div>
           <div class="flex gap-2 md:gap-3 items-center mt-2 md:mt-0">
-            <div class="h-8 w-8 md:h-12 md:w-12 rounded-full bg-emerald-50 dark:bg-emerald-800 flex items-center justify-center text-emerald-500 dark:text-emerald-300">
+            <div class="h-8 w-8 md:h-12 md:w-12 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-500">
               <i class="fas fa-phi text-lg md:text-2xl"></i>
             </div>
-            <span class="text-2xs md:text-xs max-w-140 md:max-w-200 text-emerald-600/70 dark:text-emerald-400/70">১.৬১৮ — সোনালী অনুপাত কুরআনের সংখ্যা বিন্যাসে বিদ্যমান</span>
+            <span class="text-2xs md:text-xs max-w-[140px] md:max-w-[200px] text-emerald-600/70">১.৬১৮ — সোনালী অনুপাত কুরআনের সংখ্যা বিন্যাসে বিদ্যমান</span>
           </div>
         </div>
         <div class="absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-emerald-200 to-transparent"></div>
@@ -581,16 +492,16 @@
       <div class="explanation-card shadow-md slide-up" style="animation-delay: 0.4s">
         <div class="flex items-start gap-2 md:gap-4 flex-wrap">
           <div class="flex-1">
-            <h3 class="text-base md:text-lg font-semibold text-emerald-800 dark:text-emerald-200 mb-1 md:mb-2 flex items-center gap-1 md:gap-2 flex-wrap">
+            <h3 class="text-base md:text-lg font-semibold text-emerald-800 mb-1 md:mb-2 flex items-center gap-1 md:gap-2 flex-wrap">
               <span class="font-mono bangla-number text-sm md:text-base">৭৯০৬ ÷ ৪৮৮৫</span> 
               <span class="text-xs md:text-base font-light">=</span>
-              <span class="font-mono text-emerald-600 dark:text-emerald-400 text-sm md:text-xl bangla-number">১.৬১৮৬৩২...</span>
+              <span class="font-mono text-emerald-600 text-sm md:text-xl bangla-number">১.৬১৮৬৩২...</span>
             </h3>
-            <div class="space-y-1 md:space-y-2 text-emerald-700 dark:text-emerald-300 text-2xs md:text-sm leading-relaxed">
-              <p><span class="font-medium">সোনালী অনুপাত (ϕ)</span> প্রায় <span class="font-mono bg-emerald-100/60 dark:bg-emerald-900/60 px-1 md:px-2 py-0.5 rounded bangla-number text-2xs md:text-xs">১.৬১৮০৩৩৯৮৮৭...</span></p>
+            <div class="space-y-1 md:space-y-2 text-emerald-700 text-2xs md:text-sm leading-relaxed">
+              <p><span class="font-medium">সোনালী অনুপাত (ϕ)</span> প্রায় <span class="font-mono bg-emerald-100/60 px-1 md:px-2 py-0.5 rounded bangla-number text-2xs md:text-xs">১.৬১৮০৩৩৯৮৮৭...</span></p>
               <p>পার্থক্য মাত্র <span class="font-mono font-medium bangla-number">০.০০০৫৯৮</span> — অত্যন্ত কাছাকাছি একটি মিল।</p>
-              <div class="bg-white/40 dark:bg-black/20 p-2 md:p-3 rounded-lg md:rounded-xl mt-1 md:mt-2">
-                <span class="text-emerald-700 dark:text-emerald-200 text-2xs md:text-sm">এটি ধ্রুপদী সোনালী অনুপাতের উল্লেখযোগ্য কাছাকাছি, যা শিল্প ও প্রকৃতিতে সুষম অনুপাত হিসেবে পরিচিত। মাত্র <span class="font-mono bangla-number">০.০০০৫৯৮</span> (০.০৪% এর কম) বিচ্যুতি একে একটি চমকপ্রদ সংখ্যাসূচক প্রতিধ্বনি করে তুলেছে।</span>
+              <div class="bg-white/40 p-2 md:p-3 rounded-lg md:rounded-xl mt-1 md:mt-2">
+                <span class="text-emerald-700 text-2xs md:text-sm">এটি ধ্রুপদী সোনালী অনুপাতের উল্লেখযোগ্য কাছাকাছি, যা শিল্প ও প্রকৃতিতে সুষম অনুপাত হিসেবে পরিচিত। মাত্র <span class="font-mono bangla-number">০.০০০৫৯৮</span> (০.০৪% এর কম) বিচ্যুতি একে একটি চমকপ্রদ সংখ্যাসূচক প্রতিধ্বনি করে তুলেছে।</span>
               </div>
             </div>
           </div>
@@ -686,7 +597,7 @@
             td.innerHTML = `<span class="${badgeClass} px-2 md:px-3 py-0.5 md:py-1 rounded-full text-2xs md:text-xs font-medium shadow-sm">${row[idx] === 'Even' ? 'জোড়' : 'বিজোড়'}</span>`;
           } else if (idx === 3) {
             if (freq[row[idx]] > 1) {
-              td.innerHTML = `<span class="font-medium text-emerald-600 bangla-number text-2xs md:text-sm">${toBanglaNumber(row[idx])} <i class="fas fa-repeat text-8px md:text-10px opacity-50"></i></span>`;
+              td.innerHTML = `<span class="font-medium text-emerald-600 bangla-number text-2xs md:text-sm">${toBanglaNumber(row[idx])} <i class="fas fa-repeat text-[8px] md:text-[10px] opacity-50"></i></span>`;
             } else {
               td.innerHTML = `<span class="bangla-number text-2xs md:text-sm">${toBanglaNumber(row[idx])}</span>`;
             }
@@ -753,22 +664,19 @@
         commentEl.innerText = 'সোনালী অনুপাতের কাছাকাছি নয়, তবে সামঞ্জস্য পর্যবেক্ষণ করুন।';
       }
     }
+
     function toggleTheme() {
       const body = document.body;
       const icon = document.querySelector('.theme-toggle-btn i');
       
-      if (body.classList.contains('light-mode')) {
-        body.classList.remove('light-mode');
+      if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        icon.className = 'fas fa-sun';
+      } else {
         body.classList.add('dark-mode');
         icon.className = 'fas fa-moon';
-      } else {
-        body.classList.remove('dark-mode');
-        body.classList.add('light-mode');
-        icon.className = 'fas fa-sun';
       }
     }
-    document.body.classList.add('light-mode');
-    document.querySelector('.theme-toggle-btn i').className = 'fas fa-sun';
     render();
   </script>
 </body>
